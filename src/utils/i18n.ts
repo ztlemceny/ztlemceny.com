@@ -18,5 +18,6 @@ export function useTranslations(lang: Lang) {
 }
 
 export function switchLangPath(pathname: string, from: Lang, to: Lang): string {
+  if (pathname === '/') return `/${to}/`;
   return pathname.replace(`/${from}/`, `/${to}/`);
 }

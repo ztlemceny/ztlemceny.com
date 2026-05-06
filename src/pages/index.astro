@@ -1,5 +1,84 @@
 ---
-// Redirect root to French by default using a relative path
-// This works correctly on GitHub Pages regardless of the base path
-return Astro.redirect('/fr/', 302);
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import TourSlider from '../components/TourSlider.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import PressMention from '../components/PressMention.astro';
+import InstagramFeed from '../components/InstagramFeed.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations, type Lang } from '../utils/i18n';
+import testimonialData from '../data/testimonials.json';
+
+const lang: Lang = 'en';
+const t = useTranslations(lang);
+
+// Featured tours for English
+const allTours = await getCollection('tours', ({ data }) => data.lang === lang);
+allTours.sort((a, b) => a.data.order - b.data.order);
+
+// Featured testimonials
+const featuredTestimonials = testimonialData.filter(t => t.featured);
 ---
+
+<BaseLayout title="Home" lang={lang}>
+
+  <!-- Hero -->
+  <Hero lang={lang} image="/images/shots/shot-17.jpg" />
+
+  <!-- Intro / Featured Tours -->
+  <section id="tours" class="py-20 bg-sand-50 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto text-center mb-14">
+        <h2 class="section-title">{t.home.intro_title}</h2>
+        <p class="section-subtitle">{t.home.intro_text}</p>
+      </div>
+
+      <!-- Featured tours slider -->
+      <TourSlider tours={allTours} lang={lang} />
+
+      <div class="text-center mt-10">
+        <a href={`/${lang}/tours`.replace(/\/+/g, '/')} class="btn-outline-dark">
+          {t.tours.page_title} →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <StatsBar lang={lang} />
+
+  <!-- Press Mention -->
+  <PressMention lang={lang} />
+
+  <!-- Testimonials preview -->
+  {featuredTestimonials.length > 0 && (
+    <section class="py-20 bg-sand-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto text-center mb-14">
+          <h2 class="section-title">{t.home.testimonials_title}</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {featuredTestimonials.map(testimonial => (
+            <TestimonialCard testimonial={testimonial} lang={lang} />
+          ))}
+        </div>
+
+        <div class="text-center mt-10">
+          <a href={`/${lang}/testimonials`.replace(/\/+/g, '/')} class="btn-outline-dark">
+            {t.nav.testimonials} →
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Instagram Feed -->
+  <InstagramFeed lang={lang} />
+
+  <!-- CTA Banner -->
+  <CtaBanner lang={lang} />
+
+</BaseLayout>
