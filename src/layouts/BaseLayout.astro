@@ -44,12 +44,41 @@ const isRTL = lang === 'ar';
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7ZRRHLJKL"></script>
-  <script>
+  <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', 'G-L7ZRRHLJKL');
+  </script>
+
+  <!-- PWA Theme Color -->
+  <meta name="theme-color" content="#8B4513" />
+  
+  <!-- Structured Data: Local Business (Tlemcen) -->
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Ztlemceny - Tlemcen Tours",
+      "image": "https://ztlemceny.com/images/shots/shot-17.jpg",
+      "@id": "https://ztlemceny.com",
+      "url": "https://ztlemceny.com",
+      "telephone": "+213 656030566",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tlemcen",
+        "addressRegion": "Tlemcen",
+        "addressCountry": "DZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.8817,
+        "longitude": -1.3167
+      },
+      "description": "Guided tours and travel experiences in Tlemcen, Algeria, with Hamza.",
+      "priceRange": "$$"
+    }
   </script>
 </head>
 <body>
