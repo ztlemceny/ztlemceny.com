@@ -22,7 +22,7 @@ itinerary:
   - La Grande Mosquée de Tlemcen
   - Complexe d'El Eubbad (Sidi Boumediene)
   - Grottes de Beni Add (merveilles souterraines)
-  - Cascades et viaduc d'El Ourit
+  - Cascade d'El Ourit et le Pont
   - Ruines et minaret de Mansourah
 ---
 
