@@ -344,99 +344,89 @@ const otherTours = allTours
     minibus: t.tours.vehicle_minibus
   }
 }}>
-  document.addEventListener('astro:page-load', () => {
-    // Form logic
+  function initBooking() {
     const form = document.getElementById('booking-form');
-    if (form) {
-      const guestsInput = document.getElementById('booking-guests');
-      const priceDisplay = document.getElementById('dynamic-price');
-      const vehicleIndicator = document.getElementById('vehicle-indicator');
-      const vehicleName = document.getElementById('vehicle-name');
-      const iconSedan = document.getElementById('vehicle-icon-sedan');
-      const iconVan = document.getElementById('vehicle-icon-van');
+    if (!form) return;
+    
+    const guestsInput = document.getElementById('booking-guests');
+    const priceDisplay = document.getElementById('dynamic-price');
+    const vehicleIndicator = document.getElementById('vehicle-indicator');
+    const vehicleName = document.getElementById('vehicle-name');
+    const iconSedan = document.getElementById('vehicle-icon-sedan');
+    const iconVan = document.getElementById('vehicle-icon-van');
 
-      const updatePrice = () => {
-        if (!guestsInput || !priceDisplay) return;
-        const count = guestsInput.value === '6+' ? 7 : parseInt(guestsInput.value);
-        const baseNum = parseInt(basePriceStr.replace(/[^0-9]/g, '')) || 0;
-        
-        let extra = 0;
-        let vehicle = 'sedan';
-        
-        if (count <= pricingTiers.base.maxGuests) {
-          extra = pricingTiers.base.extra;
-          vehicle = pricingTiers.base.vehicle;
-        } else if (count <= pricingTiers.small.maxGuests) {
-          extra = pricingTiers.small.extra;
-          vehicle = pricingTiers.small.vehicle;
-        } else if (count <= pricingTiers.van.maxGuests) {
-          extra = pricingTiers.van.extra;
-          vehicle = pricingTiers.van.vehicle;
-        } else {
-          extra = pricingTiers.large.extra;
-          vehicle = pricingTiers.large.vehicle;
-        }
+    const updatePrice = () => {
+      if (!guestsInput || !priceDisplay) return;
+      const count = guestsInput.value === '6+' ? 7 : parseInt(guestsInput.value);
+      const baseNum = parseInt(basePriceStr.replace(/[^0-9]/g, '')) || 0;
+      
+      let extra = 0;
+      let vehicle = 'sedan';
+      
+      if (count <= pricingTiers.base.maxGuests) {
+        extra = pricingTiers.base.extra;
+        vehicle = pricingTiers.base.vehicle;
+      } else if (count <= pricingTiers.small.maxGuests) {
+        extra = pricingTiers.small.extra;
+        vehicle = pricingTiers.small.vehicle;
+      } else if (count <= pricingTiers.van.maxGuests) {
+        extra = pricingTiers.van.extra;
+        vehicle = pricingTiers.van.vehicle;
+      } else {
+        extra = pricingTiers.large.extra;
+        vehicle = pricingTiers.large.vehicle;
+      }
 
-        const total = baseNum + extra;
-        const formattedPrice = basePriceStr.includes('€') ? `${total} €` : `${total}`;
+      const total = baseNum + extra;
+      const formattedPrice = basePriceStr.includes('€') ? `${total} €` : `${total}`;
+      
+      priceDisplay.textContent = formattedPrice;
+      
+      // Update vehicle
+      if (vehicleIndicator && vehicleName) {
+        vehicleIndicator.classList.remove('hidden');
+        vehicleName.textContent = labels[vehicle] || vehicle;
         
-        priceDisplay.textContent = formattedPrice;
-        
-        // Update vehicle
-        if (vehicleIndicator && vehicleName) {
-          vehicleIndicator.classList.remove('hidden');
-          vehicleName.textContent = labels[vehicle] || vehicle;
-          
-          if (iconSedan && iconVan) {
-            if (vehicle === 'sedan') {
-              iconSedan.classList.remove('hidden');
-              iconVan.classList.add('hidden');
-            } else {
-              iconSedan.classList.add('hidden');
-              iconVan.classList.remove('hidden');
-            }
+        if (iconSedan && iconVan) {
+          if (vehicle === 'sedan') {
+            iconSedan.classList.remove('hidden');
+            iconVan.classList.add('hidden');
+          } else {
+            iconSedan.classList.add('hidden');
+            iconVan.classList.remove('hidden');
           }
         }
+      }
+    };
 
-        return formattedPrice;
-      };
+    guestsInput?.addEventListener('change', updatePrice);
+    updatePrice();
 
-      guestsInput?.addEventListener('change', updatePrice);
-      // Initial call
-      updatePrice();
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        try {
-          const dateInput = document.getElementById('booking-date');
-          
-          if (!dateInput || !guestsInput || !priceDisplay) {
-            console.error('Missing form elements');
-            return;
-          }
-
-          const date = dateInput.value;
-          const guests = guestsInput.value;
-          const currentPrice = priceDisplay.textContent || basePriceStr;
-          
-          if (!date) {
-            alert('Please select a date');
-            return;
-          }
-
-          const message = messageTemplate
-            .replace('{title}', title)
-            .replace('{price}', currentPrice)
-            .replace('{date}', date)
-            .replace('{guests}', guests);
-            
-          const url = `${whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
-          window.open(url, '_blank', 'noopener,noreferrer');
-        } catch (err) {
-          console.error('Booking error:', err);
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      try {
+        const dateInput = document.getElementById('booking-date');
+        const date = dateInput ? dateInput.value : '';
+        const guests = guestsInput ? guestsInput.value : '1';
+        const currentPrice = priceDisplay ? priceDisplay.textContent : basePriceStr;
+        
+        if (!date) {
+          alert('Please select a date');
+          return;
         }
-      });
-    }
+
+        const message = messageTemplate
+          .replace('{title}', title)
+          .replace('{price}', currentPrice)
+          .replace('{date}', date)
+          .replace('{guests}', guests);
+          
+        const url = `${whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank', 'noopener,noreferrer');
+      } catch (err) {
+        console.error('Booking error:', err);
+      }
+    });
 
     // Lightbox logic
     const items = document.querySelectorAll('.gallery-item');
@@ -471,5 +461,10 @@ const otherTours = allTours
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeLightbox();
     });
-  });
+  }
+
+  // Run on initial load
+  initBooking();
+  // Also run on Astro page load (for view transitions support if enabled later)
+  document.addEventListener('astro:page-load', initBooking);
 </script>
