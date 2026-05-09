@@ -13,7 +13,8 @@
 
   :lang(ar) {
     font-family: 'Noto Naskh Arabic', serif;
-    line-height: 1.85;
+    line-height: 1.9;
+    letter-spacing: -0.01em;
   }
 
   :lang(ar) h1,
@@ -77,5 +78,30 @@
 
 .swiper-pagination {
   @apply flex justify-center items-center gap-2;
+}
+
+/* Scroll Reveal Animations */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.active {
+  animation: reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* RTL Adjustments */
+:lang(ar) .reveal-up {
+  transform: translateY(20px);
 }
 

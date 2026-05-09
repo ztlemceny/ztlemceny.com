@@ -136,6 +136,19 @@ const isRTL = lang === 'ar';
       scrollBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+
+      // Scroll Reveal logic
+      const revealItems = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      revealItems.forEach(item => revealObserver.observe(item));
     });
   </script>
 </body>

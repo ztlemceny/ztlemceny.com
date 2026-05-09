@@ -88,31 +88,40 @@ const otherLangs = LANGS.filter(l => l !== lang);
     </div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden lg:hidden py-4 border-t border-stone-100">
-      <div class="flex flex-col gap-1 mb-4">
+    <div 
+      id="mobile-menu" 
+      class="hidden lg:hidden py-6 border-t border-stone-100 overflow-hidden transition-all duration-500 ease-in-out max-h-0"
+    >
+      <div class="flex flex-col gap-2 mb-6">
         {links.map(link => (
           <a
             href={link.href}
-            class="px-3 py-2.5 rounded-md text-sm font-medium text-stone-700 hover:text-terracotta hover:bg-stone-50 transition-colors"
+            class={`px-4 py-3 rounded-xl text-base font-medium transition-all ${
+              path === link.href || (link.href !== `/${lang}/` && path.startsWith(link.href))
+                ? 'text-terracotta bg-terracotta-50/50'
+                : 'text-stone-700 hover:text-terracotta hover:bg-stone-50'
+            }`}
           >
             {link.label}
           </a>
         ))}
       </div>
-      <div class="flex items-center justify-between pt-4 border-t border-stone-100">
-        <div class="flex gap-2">
+      <div class="flex flex-col gap-6 pt-6 border-t border-stone-100">
+        <div class="flex gap-3 px-4">
           {otherLangs.map(l => (
             <a
               href={switchLangPath(path, lang, l)}
-              class="px-3 py-1.5 text-xs font-semibold text-stone-500 hover:text-terracotta border border-stone-200 rounded-md uppercase tracking-wider transition-colors"
+              class="flex-1 text-center py-2.5 text-xs font-bold text-stone-500 hover:text-terracotta border border-stone-200 rounded-xl uppercase tracking-widest transition-all hover:border-terracotta hover:bg-terracotta/5"
             >
               {l}
             </a>
           ))}
         </div>
-        <a href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer" class="btn-primary text-sm">
-          {t.nav.reserve}
-        </a>
+        <div class="px-4">
+          <a href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center py-4 text-base shadow-lg shadow-terracotta/20">
+            {t.nav.reserve}
+          </a>
+        </div>
       </div>
     </div>
 
@@ -120,15 +129,38 @@ const otherLangs = LANGS.filter(l => l !== lang);
 </header>
 
 <script>
-  const toggle = document.getElementById('nav-toggle');
-  const menu = document.getElementById('mobile-menu');
-  const iconOpen = document.getElementById('icon-open');
-  const iconClose = document.getElementById('icon-close');
+  function initNav() {
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
 
-  toggle?.addEventListener('click', () => {
-    const isHidden = menu?.classList.contains('hidden');
-    menu?.classList.toggle('hidden', !isHidden);
-    iconOpen?.classList.toggle('hidden', isHidden);
-    iconClose?.classList.toggle('hidden', !isHidden);
-  });
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', () => {
+      const isHidden = menu.classList.contains('hidden');
+      
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        // Small delay to allow CSS transitions to trigger
+        requestAnimationFrame(() => {
+          menu.style.maxHeight = '100vh';
+          iconOpen?.classList.add('hidden');
+          iconClose?.classList.remove('hidden');
+        });
+      } else {
+        menu.style.maxHeight = '0';
+        iconOpen?.classList.remove('hidden');
+        iconClose?.classList.add('hidden');
+        setTimeout(() => {
+          menu.classList.add('hidden');
+        }, 500);
+      }
+    });
+  }
+
+  // Run on load
+  initNav();
+  // Support for transitions if enabled
+  document.addEventListener('astro:page-load', initNav);
 </script>

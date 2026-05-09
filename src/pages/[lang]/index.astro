@@ -34,7 +34,7 @@ const featuredTestimonials = testimonialData.filter(t => t.featured);
   <!-- Intro / Featured Tours -->
   <section id="tours" class="py-20 bg-sand-50 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl mx-auto text-center mb-14">
+      <div class="max-w-2xl mx-auto text-center mb-14 reveal">
         <h2 class="section-title">{t.home.intro_title}</h2>
         <p class="section-subtitle">{t.home.intro_text}</p>
       </div>
@@ -60,7 +60,7 @@ const featuredTestimonials = testimonialData.filter(t => t.featured);
   {featuredTestimonials.length > 0 && (
     <section class="py-20 bg-sand-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl mx-auto text-center mb-14">
+        <div class="max-w-2xl mx-auto text-center mb-14 reveal">
           <h2 class="section-title">{t.home.testimonials_title}</h2>
         </div>
 

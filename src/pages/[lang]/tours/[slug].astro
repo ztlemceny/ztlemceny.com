@@ -38,9 +38,35 @@ const otherTours = allTours
   .filter(item => item.id !== tour.id)
   .sort(() => 0.5 - Math.random())
   .slice(0, 3);
+
+// Schema.org JSON-LD
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Trip",
+  "name": title,
+  "description": tagline,
+  "image": mainImage,
+  "provider": {
+    "@type": "Person",
+    "name": "Hamza",
+    "jobTitle": "Licensed Tour Guide"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": price?.replace(/[^0-9]/g, '') || "90",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  },
+  "itinerary": itinerary?.map((step, index) => ({
+    "@type": "ItemList",
+    "name": `Stop ${index + 1}`,
+    "description": step
+  }))
+};
 ---
 
 <BaseLayout title={title} lang={lang} image={mainImage} description={tagline}>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
 
   <!-- Hero / Header Image -->
   <section class="relative h-[60vh] min-h-[400px] overflow-hidden">
@@ -74,7 +100,7 @@ const otherTours = allTours
 
           <!-- Itinerary -->
           {itinerary && (
-            <div class="bg-sand-50 rounded-3xl p-8 md:p-10 border border-sand-200">
+            <div class="bg-sand-50 rounded-3xl p-8 md:p-10 border border-sand-200 reveal">
               <h2 class="font-heading text-2xl font-bold text-stone-900 mb-8 flex items-center gap-3">
                 <svg class="w-7 h-7 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A2 2 0 013 15.488V5.512a2 2 0 011.553-1.944L10 1.223a2 2 0 011.447 0l5.447 2.724A2 2 0 0118 5.877v9.976a2 2 0 01-1.553 1.944L10 21.777a2 2 0 01-1.447 0z" />
@@ -94,7 +120,7 @@ const otherTours = allTours
 
           <!-- Photo gallery for this tour -->
           {images.length > 1 && (
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal">
               {images.slice(1).map((img) => (
                 <div 
                   class="rounded-2xl overflow-hidden aspect-video watermark gallery-item cursor-pointer group"
@@ -291,6 +317,17 @@ const otherTours = allTours
     </div>
   </section>
 
+  <!-- Mobile Sticky Booking Bar -->
+  <div id="mobile-booking-bar" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-stone-100 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] flex items-center justify-between lg:hidden translate-y-full transition-transform duration-500">
+    <div>
+      <p class="text-[10px] text-stone-400 uppercase tracking-widest leading-none mb-1">{t.tours.price_label}</p>
+      <p id="mobile-price-display" class="text-xl font-bold text-stone-900 leading-none">{price || t.tours.price_value}</p>
+    </div>
+    <button id="mobile-reserve-btn" class="bg-terracotta text-white px-6 py-3 rounded-xl font-bold text-sm shadow-md active:scale-95 transition-all">
+      {t.nav.reserve}
+    </button>
+  </div>
+
   <!-- Other Tours -->
   <section class="py-20 bg-sand-50 border-t border-sand-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -355,6 +392,27 @@ const otherTours = allTours
     const iconSedan = document.getElementById('vehicle-icon-sedan');
     const iconVan = document.getElementById('vehicle-icon-van');
 
+    // Mobile Sticky Bar Logic
+    const mobileBar = document.getElementById('mobile-booking-bar');
+    const mobilePriceDisplay = document.getElementById('mobile-price-display');
+    const mobileReserveBtn = document.getElementById('mobile-reserve-btn');
+    
+    const handleScroll = () => {
+      if (!mobileBar) return;
+      // Show after scrolling past hero
+      if (window.scrollY > 400) {
+        mobileBar.classList.remove('translate-y-full');
+      } else {
+        mobileBar.classList.add('translate-y-full');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    mobileReserveBtn?.addEventListener('click', () => {
+      const formTop = form.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: formTop, behavior: 'smooth' });
+    });
+
     const updatePrice = () => {
       if (!guestsInput || !priceDisplay) return;
       const count = guestsInput.value === '6+' ? 7 : parseInt(guestsInput.value);
@@ -381,6 +439,7 @@ const otherTours = allTours
       const formattedPrice = basePriceStr.includes('€') ? `${total} €` : `${total}`;
       
       priceDisplay.textContent = formattedPrice;
+      if (mobilePriceDisplay) mobilePriceDisplay.textContent = formattedPrice;
       
       // Update vehicle
       if (vehicleIndicator && vehicleName) {
