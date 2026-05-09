@@ -63,9 +63,7 @@ const otherLangs = LANGS.filter(l => l !== lang);
           ))}
         </div>
         <a
-          href={SITE.bookingUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={`${base}${lang}/tours`}
           class="btn-primary text-sm"
         >
           {t.nav.reserve}
@@ -118,7 +116,7 @@ const otherLangs = LANGS.filter(l => l !== lang);
           ))}
         </div>
         <div class="px-4">
-          <a href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center py-4 text-base shadow-lg shadow-terracotta/20">
+          <a href={`${base}${lang}/tours`} class="btn-primary w-full text-center py-4 text-base shadow-lg shadow-terracotta/20">
             {t.nav.reserve}
           </a>
         </div>
