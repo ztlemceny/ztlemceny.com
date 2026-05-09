@@ -14,7 +14,8 @@ not_included:
   - المشتريات من السوق
 order: 5
 featured: false
-price: 30 €
+price: 40 €
+extra_person_fee: 5
 itinerary:
   - أزقة المدينة العتيقة المخفية
   - أسواق التوابل والمنسوجات السرية

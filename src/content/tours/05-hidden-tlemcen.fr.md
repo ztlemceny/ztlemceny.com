@@ -14,7 +14,8 @@ not_included:
   - Achats dans les souks
 order: 5
 featured: false
-price: 30 €
+price: 40 €
+extra_person_fee: 5
 itinerary:
   - Ruelles cachées de la Médina
   - Souks secrets d'épices et de textiles

@@ -22,7 +22,7 @@ const { tour } = Astro.props;
 const { lang } = Astro.params as { lang: Lang };
 const t = useTranslations(lang);
 
-const { title, tagline, duration, difficulty, images, included, not_included, price, itinerary } = tour.data;
+const { title, tagline, duration, difficulty, images, included, not_included, price, extra_person_fee, itinerary } = tour.data;
 const { Content } = await tour.render();
 
 const mainImage = images[0] ?? '/images/shots/shot-01.jpg';
@@ -373,6 +373,7 @@ const schema = {
   whatsappBaseUrl: SITE.whatsappUrl, 
   title: title, 
   basePriceStr: price || t.tours.price_value, 
+  extraPersonFee: extra_person_fee,
   pricingTiers: PRICING.tiers,
   messageTemplate: t.tours.booking_whatsapp_message,
   labels: {
@@ -418,24 +419,37 @@ const schema = {
       const count = guestsInput.value === '6+' ? 7 : parseInt(guestsInput.value);
       const baseNum = parseInt(basePriceStr.replace(/[^0-9]/g, '')) || 0;
       
-      let extra = 0;
+      let total = baseNum;
       let vehicle = 'sedan';
       
-      if (count <= pricingTiers.base.maxGuests) {
-        extra = pricingTiers.base.extra;
-        vehicle = pricingTiers.base.vehicle;
-      } else if (count <= pricingTiers.small.maxGuests) {
-        extra = pricingTiers.small.extra;
-        vehicle = pricingTiers.small.vehicle;
-      } else if (count <= pricingTiers.van.maxGuests) {
-        extra = pricingTiers.van.extra;
-        vehicle = pricingTiers.van.vehicle;
+      if (extraPersonFee !== undefined && extraPersonFee !== null) {
+        // Linear pricing: base + (n-1)*extra
+        total = baseNum + (count - 1) * extraPersonFee;
+        
+        // Determine vehicle based on count
+        if (count <= pricingTiers.base.maxGuests) vehicle = pricingTiers.base.vehicle;
+        else if (count <= pricingTiers.small.maxGuests) vehicle = pricingTiers.small.vehicle;
+        else if (count <= pricingTiers.van.maxGuests) vehicle = pricingTiers.van.vehicle;
+        else vehicle = pricingTiers.large.vehicle;
       } else {
-        extra = pricingTiers.large.extra;
-        vehicle = pricingTiers.large.vehicle;
+        // Tiered pricing logic
+        let extra = 0;
+        if (count <= pricingTiers.base.maxGuests) {
+          extra = pricingTiers.base.extra;
+          vehicle = pricingTiers.base.vehicle;
+        } else if (count <= pricingTiers.small.maxGuests) {
+          extra = pricingTiers.small.extra;
+          vehicle = pricingTiers.small.vehicle;
+        } else if (count <= pricingTiers.van.maxGuests) {
+          extra = pricingTiers.van.extra;
+          vehicle = pricingTiers.van.vehicle;
+        } else {
+          extra = pricingTiers.large.extra;
+          vehicle = pricingTiers.large.vehicle;
+        }
+        total = baseNum + extra;
       }
 
-      const total = baseNum + extra;
       const formattedPrice = basePriceStr.includes('€') ? `${total} €` : `${total}`;
       
       priceDisplay.textContent = formattedPrice;

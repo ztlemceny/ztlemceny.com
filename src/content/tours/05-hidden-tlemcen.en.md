@@ -14,7 +14,8 @@ not_included:
   - Souk purchases
 order: 5
 featured: false
-price: 30 €
+price: 40 €
+extra_person_fee: 5
 itinerary:
   - Hidden alleys of the Medina
   - Secret spice and textile souks

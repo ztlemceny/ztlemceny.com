@@ -16,6 +16,7 @@ not_included:
 order: 2
 featured: true
 price: 40 €
+extra_person_fee: 5
 itinerary:
   - Agadir ruins (City foundations)
   - Traditional communal ovens
