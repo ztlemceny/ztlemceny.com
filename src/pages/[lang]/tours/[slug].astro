@@ -228,7 +228,14 @@ const otherTours = allTours
               <form id="booking-form" class="space-y-4 pt-4 border-t border-stone-100">
                 <div class="space-y-1">
                   <label for="booking-date" class="block text-xs font-bold text-stone-700 uppercase tracking-widest">{t.tours.booking_date_label}</label>
-                  <input type="date" id="booking-date" required min={new Date().toISOString().split('T')[0]} class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:ring-2 focus:ring-terracotta/20 focus:border-terracotta outline-none transition-all text-stone-700" />
+                  <input 
+                    type="date" 
+                    id="booking-date" 
+                    required 
+                    min={new Date().toISOString().split('T')[0]} 
+                    max="9999-12-31"
+                    class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:ring-2 focus:ring-terracotta/20 focus:border-terracotta outline-none transition-all text-stone-700" 
+                  />
                 </div>
                 <div class="space-y-1">
                   <label for="booking-guests" class="block text-xs font-bold text-stone-700 uppercase tracking-widest">{t.tours.booking_guests_label}</label>
@@ -400,22 +407,34 @@ const otherTours = allTours
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const dateInput = document.getElementById('booking-date');
-        
-        if (!dateInput || !guestsInput) return;
-
-        const date = dateInput.value;
-        const guests = guestsInput.value;
-        const currentPrice = priceDisplay.textContent;
-        
-        const message = messageTemplate
-          .replace('{title}', title)
-          .replace('{price}', currentPrice)
-          .replace('{date}', date)
-          .replace('{guests}', guests);
+        try {
+          const dateInput = document.getElementById('booking-date');
           
-        const url = `${whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
-        window.open(url, '_blank', 'noopener,noreferrer');
+          if (!dateInput || !guestsInput || !priceDisplay) {
+            console.error('Missing form elements');
+            return;
+          }
+
+          const date = dateInput.value;
+          const guests = guestsInput.value;
+          const currentPrice = priceDisplay.textContent || basePriceStr;
+          
+          if (!date) {
+            alert('Please select a date');
+            return;
+          }
+
+          const message = messageTemplate
+            .replace('{title}', title)
+            .replace('{price}', currentPrice)
+            .replace('{date}', date)
+            .replace('{guests}', guests);
+            
+          const url = `${whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
+          window.open(url, '_blank', 'noopener,noreferrer');
+        } catch (err) {
+          console.error('Booking error:', err);
+        }
       });
     }
 
