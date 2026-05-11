@@ -58,12 +58,14 @@
     "per_group": "للمجموعة",
     "reserve_button": "احجز هذه الجولة",
     "languages_label": "متاح بـ",
-    "itinerary_label": "المسار",
-    "whatsapp_message_template": "مرحباً حمزة! أنا مهتم بحجز جولة {title} ({price}). هل هي متوفرة؟",
-    "all_tours_cta": "احجز جولة",
+    "booking_name": "الاسم الكامل",
+    "booking_email_label": "البريد الإلكتروني",
+    "booking_phone": "رقم الهاتف",
     "booking_date_label": "اختر التاريخ",
     "booking_guests_label": "عدد الأشخاص",
-    "booking_whatsapp_message": "مرحباً حمزة! أود حجز جولة {title} لـ {guests} أشخاص بتاريخ {date}. السعر الإجمالي: {price}. هل هي متوفرة؟",
+    "booking_email_subject": "طلب حجز: {title}",
+    "booking_email_body": "مرحباً حمزة!\n\nأود حجز جولة {title}.\n\nالتفاصيل:\n- الاسم: {name}\n- البريد الإلكتروني: {email}\n- رقم الهاتف: {phone}\n- التاريخ: {date}\n- عدد الأشخاص: {guests}\n- السعر الإجمالي: {price}\n\nهل هي متوفرة؟",
+    "all_tours_cta": "احجز جولة",
     "faq_title": "الأسئلة الشائعة",
     "faqs": [
       {

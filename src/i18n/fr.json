@@ -58,12 +58,14 @@
     "per_group": "par groupe",
     "reserve_button": "Réserver cette visite",
     "languages_label": "Disponible en",
-    "itinerary_label": "Itinéraire",
-    "whatsapp_message_template": "Bonjour Hamza ! Je suis intéressé(e) par la visite {title} ({price}). Est-elle disponible ?",
-    "all_tours_cta": "Réserver une visite",
+    "booking_name": "Nom complet",
+    "booking_email_label": "Adresse Email",
+    "booking_phone": "Numéro de téléphone",
     "booking_date_label": "Sélectionner la date",
     "booking_guests_label": "Nombre de participants",
-    "booking_whatsapp_message": "Bonjour Hamza ! Je souhaite réserver la visite {title} pour {guests} personnes le {date}. Prix total : {price}. Est-elle disponible ?",
+    "booking_email_subject": "Demande de réservation : {title}",
+    "booking_email_body": "Bonjour Hamza !\n\nJe souhaite réserver la visite {title}.\n\nDétails :\n- Nom : {name}\n- Email : {email}\n- Téléphone : {phone}\n- Date : {date}\n- Participants : {guests}\n- Prix total : {price}\n\nEst-elle disponible ?",
+    "all_tours_cta": "Réserver une visite",
     "faq_title": "Questions Fréquentes",
     "faqs": [
       {
