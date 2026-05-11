@@ -17,9 +17,8 @@ const mainImage = images[0] ?? '/images/shots/shot-01.jpg';
 const [slug] = tour.slug.split('.');
 const tourLink = `${import.meta.env.BASE_URL}/${lang}/tours/${slug}`.replace(/\/+/g, '/');
 
-const whatsappMessage = t.tours.whatsapp_message_template
-  .replace('{title}', title)
-  .replace('{price}', price || t.tours.price_value);
+const whatsappMessage = t.tours.whatsapp_message_simple
+  .replace('{title}', title);
 const whatsappUrl = `${SITE.whatsappUrl}?text=${encodeURIComponent(whatsappMessage)}`;
 ---
 

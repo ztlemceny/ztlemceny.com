@@ -58,6 +58,7 @@
     "per_group": "per group",
     "reserve_button": "Book This Tour",
     "languages_label": "Available in",
+    "whatsapp_message_simple": "Hello Hamza! I'm interested in the {title} tour. Can you give me more information?",
     "booking_name": "Full Name",
     "booking_email_label": "Email Address",
     "booking_phone": "Phone Number",

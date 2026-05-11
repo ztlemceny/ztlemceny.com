@@ -58,6 +58,7 @@
     "per_group": "par groupe",
     "reserve_button": "Réserver cette visite",
     "languages_label": "Disponible en",
+    "whatsapp_message_simple": "Bonjour Hamza ! Je suis intéressé(e) par la visite {title}. Pouvez-vous me donner plus d'informations ?",
     "booking_name": "Nom complet",
     "booking_email_label": "Adresse Email",
     "booking_phone": "Numéro de téléphone",
