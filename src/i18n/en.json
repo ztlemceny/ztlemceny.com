@@ -179,9 +179,9 @@
   "custom_itinerary": {
     "page_title": "Custom Itinerary",
     "page_subtitle": "Design your own journey. Choose the places that inspire you, and let's create a unique experience together.",
-    "form_title": "Build Your Tour",
-    "form_date": "Planned Date",
-    "form_guests": "Number of Guests",
+    "form_name": "Full Name",
+    "form_email": "Email Address",
+    "form_phone": "Phone Number",
     "form_places": "Select Places to Visit",
     "form_message": "Special Requests / Interests",
     "form_submit": "Submit for Review",
@@ -199,6 +199,7 @@
     "poi_agadir": "Agadir Ruins",
     "poi_medina": "Medina & Souks",
     "poi_artisan": "Artisan Workshops",
-    "whatsapp_message": "Hello Hamza! I've created a custom itinerary for {guests} guests on {date}. I'd like to visit: {places}. Additional notes: {message}"
+    "email_subject": "Custom Itinerary Request",
+    "email_body": "Hello Hamza!\n\nI would like to request a custom itinerary.\n\nDetails:\n- Name: {name}\n- Email: {email}\n- Phone: {phone}\n- Date: {date}\n- Guests: {guests}\n- Places: {places}\n\nAdditional Notes:\n{message}"
   }
 }

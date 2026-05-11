@@ -180,12 +180,12 @@
   "custom_itinerary": {
     "page_title": "Itinéraire Sur Mesure",
     "page_subtitle": "Concevez votre propre voyage. Choisissez les lieux qui vous inspirent, et créons ensemble une expérience unique.",
-    "form_title": "Créez votre visite",
-    "form_date": "Date prévue",
-    "form_guests": "Nombre de participants",
+    "form_name": "Nom complet",
+    "form_email": "Adresse Email",
+    "form_phone": "Numéro de téléphone",
     "form_places": "Lieux à visiter",
     "form_message": "Demandes spéciales / Intérêts",
-    "form_submit": "Soumettre pour révision",
+    "form_submit": "Envoyer ma demande",
     "poi_historical": "Historique & Royal",
     "poi_nature": "Nature & Paysages",
     "poi_culture": "Culture & Traditions",
@@ -200,6 +200,7 @@
     "poi_agadir": "Ruines d'Agadir",
     "poi_medina": "Médina & Souks",
     "poi_artisan": "Ateliers d'artisans",
-    "whatsapp_message": "Bonjour Hamza ! J'ai créé un itinéraire sur mesure pour {guests} personnes le {date}. J'aimerais visiter : {places}. Notes additionnelles : {message}"
+    "email_subject": "Demande d'itinéraire sur mesure",
+    "email_body": "Bonjour Hamza !\n\nJe souhaite demander un itinéraire sur mesure.\n\nDétails :\n- Nom : {name}\n- Email : {email}\n- Téléphone : {phone}\n- Date : {date}\n- Participants : {guests}\n- Lieux : {places}\n\nNotes additionnelles :\n{message}"
   }
 }
