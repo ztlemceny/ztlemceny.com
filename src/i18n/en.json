@@ -8,7 +8,6 @@
     "testimonials": "Reviews",
     "contact": "Contact",
     "custom_itinerary": "Custom Tour",
-    "partners": "Where to Stay",
     "reserve": "Book Now"
   },
   "hero": {
@@ -197,16 +196,6 @@
     "poi_medina": "Medina & Souks",
     "poi_artisan": "Artisan Workshops",
     "whatsapp_message": "Hello Hamza!\n\nI would like to request a custom itinerary.\n\nDetails:\n- Date: {date}\n- Guests: {guests}\n- Places: {places}\n\nAdditional Notes:\n{message}"
-  },
-  "partners": {
-    "page_title": "Where to Stay in Tlemcen",
-    "page_subtitle": "Handpicked accommodations near the best historical sites — book through our partners and support local tourism.",
-    "section_title": "Partner Hotels",
-    "section_subtitle": "Comfortable stays steps away from Tlemcen's wonders.",
-    "book_button": "View on Booking.com",
-    "from_label": "From",
-    "per_night": "/ night",
-    "affiliate_note": "* Links are affiliate links. Booking through them supports this website at no extra cost to you."
   },
   "addons": {
     "section_title": "Enhance Your Tour",

@@ -8,7 +8,6 @@
     "testimonials": "Avis",
     "contact": "Contact",
     "custom_itinerary": "Sur mesure",
-    "partners": "Où dormir",
     "reserve": "Réserver maintenant"
   },
   "hero": {
@@ -198,16 +197,6 @@
     "poi_medina": "Médina & Souks",
     "poi_artisan": "Ateliers d'artisans",
     "whatsapp_message": "Bonjour Hamza !\n\nJe souhaite demander un itinéraire sur mesure.\n\nDétails :\n- Date : {date}\n- Participants : {guests}\n- Lieux : {places}\n\nNotes additionnelles :\n{message}"
-  },
-  "partners": {
-    "page_title": "Où dormir à Tlemcen",
-    "page_subtitle": "Des hébergements sélectionnés à deux pas des sites historiques — réservez via nos partenaires et soutenez le tourisme local.",
-    "section_title": "Hôtels partenaires",
-    "section_subtitle": "Des séjours confortables à quelques pas des merveilles de Tlemcen.",
-    "book_button": "Voir sur Booking.com",
-    "from_label": "À partir de",
-    "per_night": "/ nuit",
-    "affiliate_note": "* Les liens sont des liens affiliés. Réserver via ceux-ci soutient ce site sans frais supplémentaires pour vous."
   },
   "addons": {
     "section_title": "Enrichissez votre visite",
