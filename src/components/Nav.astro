@@ -1,5 +1,5 @@
 ---
-import { useTranslations, switchLangPath, LANGS, type Lang } from '../utils/i18n';
+import { useTranslations, switchLangPath, getLocalizedPath, LANGS, type Lang } from '../utils/i18n';
 import { SITE } from '../config';
 
 interface Props {
@@ -13,14 +13,14 @@ const isRTL = lang === 'ar';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const links = [
-  { href: `${base}${lang}/`, label: t.nav.home },
-  { href: `${base}${lang}/tours`, label: t.nav.tours },
-  { href: `${base}${lang}/about`, label: t.nav.about },
-  { href: `${base}${lang}/blog`, label: t.nav.blog },
-  { href: `${base}${lang}/gallery`, label: t.nav.gallery },
-  { href: `${base}${lang}/testimonials`, label: t.nav.testimonials },
-  { href: `${base}${lang}/custom-itinerary`, label: t.nav.custom_itinerary },
-  { href: `${base}${lang}/contact`, label: t.nav.contact },
+  { href: getLocalizedPath('/', lang), label: t.nav.home },
+  { href: getLocalizedPath('/tours', lang), label: t.nav.tours },
+  { href: getLocalizedPath('/about', lang), label: t.nav.about },
+  { href: getLocalizedPath('/blog', lang), label: t.nav.blog },
+  { href: getLocalizedPath('/gallery', lang), label: t.nav.gallery },
+  { href: getLocalizedPath('/testimonials', lang), label: t.nav.testimonials },
+  { href: getLocalizedPath('/custom-itinerary', lang), label: t.nav.custom_itinerary },
+  { href: getLocalizedPath('/contact', lang), label: t.nav.contact },
 ];
 
 const otherLangs = LANGS.filter(l => l !== lang);
@@ -31,7 +31,7 @@ const otherLangs = LANGS.filter(l => l !== lang);
     <div class="flex items-center justify-between h-16">
 
       <!-- Logo -->
-      <a href={`${base}${lang}/`} class="font-heading text-xl font-bold text-stone-900 tracking-tight hover:text-terracotta transition-colors">
+      <a href={getLocalizedPath('/', lang)} class="font-heading text-xl font-bold text-stone-900 tracking-tight hover:text-terracotta transition-colors">
         Ztlemceny
       </a>
 
@@ -41,7 +41,7 @@ const otherLangs = LANGS.filter(l => l !== lang);
           <a
             href={link.href}
             class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-              path === link.href || (link.href !== `/${lang}/` && path.startsWith(link.href))
+              path === link.href || (link.href !== getLocalizedPath('/', lang) && path.startsWith(link.href))
                 ? 'text-terracotta bg-terracotta-50'
                 : 'text-stone-600 hover:text-terracotta hover:bg-stone-50'
             }`}
@@ -64,7 +64,7 @@ const otherLangs = LANGS.filter(l => l !== lang);
           ))}
         </div>
         <a
-          href={`${base}${lang}/tours`}
+          href={getLocalizedPath('/tours', lang)}
           class="btn-primary text-sm"
         >
           {t.nav.reserve}
@@ -96,7 +96,7 @@ const otherLangs = LANGS.filter(l => l !== lang);
           <a
             href={link.href}
             class={`px-4 py-3 rounded-xl text-base font-medium transition-all ${
-              path === link.href || (link.href !== `/${lang}/` && path.startsWith(link.href))
+              path === link.href || (link.href !== getLocalizedPath('/', lang) && path.startsWith(link.href))
                 ? 'text-terracotta bg-terracotta-50/50'
                 : 'text-stone-700 hover:text-terracotta hover:bg-stone-50'
             }`}
@@ -117,7 +117,7 @@ const otherLangs = LANGS.filter(l => l !== lang);
           ))}
         </div>
         <div class="px-4">
-          <a href={`${base}${lang}/tours`} class="btn-primary w-full text-center py-4 text-base shadow-lg shadow-terracotta/20">
+          <a href={getLocalizedPath('/tours', lang)} class="btn-primary w-full text-center py-4 text-base shadow-lg shadow-terracotta/20">
             {t.nav.reserve}
           </a>
         </div>

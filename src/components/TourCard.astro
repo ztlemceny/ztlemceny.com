@@ -1,5 +1,5 @@
 ---
-import { useTranslations, type Lang } from '../utils/i18n';
+import { useTranslations, getLocalizedPath, type Lang } from '../utils/i18n';
 import { SITE } from '../config';
 import type { CollectionEntry } from 'astro:content';
 
@@ -15,7 +15,7 @@ const { title, tagline, duration, difficulty, images, included, not_included, pr
 const mainImage = images[0] ?? '/images/shots/shot-01.jpg';
 
 const [slug] = tour.slug.split('.');
-const tourLink = `${import.meta.env.BASE_URL}/${lang}/tours/${slug}`.replace(/\/+/g, '/');
+const tourLink = getLocalizedPath(`/tours/${slug}`, lang);
 
 const whatsappMessage = t.tours.whatsapp_message_simple
   .replace('{title}', title);
@@ -24,7 +24,7 @@ const whatsappUrl = `${SITE.whatsappUrl}?text=${encodeURIComponent(whatsappMessa
 
 <article class="card flex flex-col h-full group">
   <!-- Image -->
-  <a href={tourLink} class={`relative overflow-hidden ${compact ? 'aspect-square' : 'aspect-[4/3]'} watermark block group-hover:opacity-90 transition-opacity`}>
+  <a href={tourLink} class={`relative overflow-hidden ${compact ? 'aspect-[3/2]' : 'aspect-[4/3]'} watermark block group-hover:opacity-90 transition-opacity`}>
     <img
       src={mainImage.startsWith('/') ? `${import.meta.env.BASE_URL}${mainImage}`.replace(/\/+/g, '/') : mainImage}
       alt={title}

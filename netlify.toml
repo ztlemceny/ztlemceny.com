@@ -2,19 +2,34 @@
   command   = "npm run build"
   publish   = "dist"
 
+# Language-based redirects from root
 [[redirects]]
   from   = "/"
   to     = "/fr/"
   status = 302
+  conditions = {Language = ["fr"]}
 
 [[redirects]]
-  from   = "/fr"
-  to     = "/fr/"
+  from   = "/"
+  to     = "/ar/"
+  status = 302
+  conditions = {Language = ["ar"]}
+
+# Redirect legacy /en/ urls to clean prefixless urls
+[[redirects]]
+  from   = "/en/"
+  to     = "/"
   status = 301
 
 [[redirects]]
-  from   = "/en"
-  to     = "/en/"
+  from   = "/en/*"
+  to     = "/:splat"
+  status = 301
+
+# Normalize missing slash on other languages
+[[redirects]]
+  from   = "/fr"
+  to     = "/fr/"
   status = 301
 
 [[redirects]]
