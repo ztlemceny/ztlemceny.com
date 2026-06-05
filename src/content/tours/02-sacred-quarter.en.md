@@ -32,3 +32,9 @@ El Eubbad, the quarter of the saints, is the spiritual soul of Tlemcen. The Sidi
 From the monumental porch to the quiet courtyard of the mosque, every detail of this place represents the intersection of faith, art, and community. It's a place where history feels deeply personal. Hamza will guide you through the wall calligraphy, the perfect proportions of the arches, and the stories of pilgrims who walked this path for centuries.
 
 The visit extends into the alleyways of El Eubbad, this hilltop village overlooking the valley — a world apart, suspended between past and present.
+
+Start your day in Agadir, the ancient Roman and early Islamic core of Tlemcen. Immerse yourself in the vibrant chaos of the local market, where spices and traditional goods fill the stalls. Just a short walk away, explore the archaeological ruins of the Agadir Mosque and minaret, a towering remnant of the city's founding dynasties.
+
+Head into the heart of the city to the Palace of El Mechouar, a 12th-century royal citadel. Wander through its beautifully restored Andalusian-style courtyards, then explore the onsite museums to view regional artifacts, traditional costumes, and historic weaponry.
+
+Conclude your journey on the peaceful hillsides of the El Eubbad complex. This sacred site features the magnificent mosque, madrasa, and mausoleum of the city's patron saint, Sidi Boumediene. Its breathtaking, intricately carved stalactite portal offers a deeply serene finale to your historic tour.
