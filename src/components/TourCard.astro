@@ -14,7 +14,7 @@ const t = useTranslations(lang);
 const { title, tagline, duration, difficulty, images, included, not_included, price, itinerary } = tour.data;
 const mainImage = images[0] ?? '/images/shots/shot-01.jpg';
 
-const [slug] = tour.slug.split('.');
+const slug = tour.id.split('.').slice(0, -2).join('.');
 const tourLink = getLocalizedPath(`/tours/${slug}`, lang);
 
 const whatsappMessage = t.tours.whatsapp_message_simple

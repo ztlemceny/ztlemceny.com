@@ -37,7 +37,7 @@ blogPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date)
       {blogPosts.length > 0 ? (
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {blogPosts.map(post => {
-            const [slug] = post.slug.split('.');
+            const slug = post.id.split('.').slice(0, -2).join('.');
             const link = getLocalizedPath(`/blog/${slug}`, lang);
             const imgSrc = post.data.image.startsWith('/') ? `${import.meta.env.BASE_URL}${post.data.image}`.replace(/\/+/g, '/') : post.data.image;
             

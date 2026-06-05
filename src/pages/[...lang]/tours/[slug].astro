@@ -7,7 +7,7 @@ import { SITE, PRICING } from '../../../config';
 export async function getStaticPaths() {
   const tours = await getCollection('tours');
   return tours.map(tour => {
-    const [slug] = tour.slug.split('.');
+    const slug = tour.id.split('.').slice(0, -2).join('.');
     return {
       params: { 
         lang: tour.data.lang === 'en' ? undefined : tour.data.lang,
@@ -335,7 +335,7 @@ const schema = {
       <h2 class="font-heading text-3xl font-bold text-stone-900 mb-10 text-center">Other Experiences</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {otherTours.map((item) => {
-           const [s] = item.slug.split('.');
+           const s = item.id.split('.').slice(0, -2).join('.');
            const link = getLocalizedPath(`/tours/${s}`, lang);
            const tourImage = item.data.images[0];
            const tourImgSrc = tourImage.startsWith('/') ? `${import.meta.env.BASE_URL}${tourImage}`.replace(/\/+/g, '/') : tourImage;
