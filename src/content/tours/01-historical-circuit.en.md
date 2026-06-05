@@ -1,6 +1,6 @@
 ---
 lang: en
-title: Tlemcen Unlocked: The Top Historic Sites
+title: "Tlemcen Unlocked: The Top Historic Sites"
 tagline: "A journey through the centuries, from Zianid palaces to the majestic ruins of Mansourah."
 duration: Full day (7–8h)
 difficulty: Moderate
