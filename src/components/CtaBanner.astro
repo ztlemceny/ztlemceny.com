@@ -1,5 +1,5 @@
 ---
-import { useTranslations, type Lang } from '../utils/i18n';
+import { useTranslations, getLocalizedPath, type Lang } from '../utils/i18n';
 import { SITE } from '../config';
 
 interface Props {
@@ -20,13 +20,13 @@ const t = useTranslations(lang);
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
       <a
-        href={`${import.meta.env.BASE_URL}/${lang}/tours`.replace(/\/+/g, '/')}
+        href={getLocalizedPath('/tours', lang)}
         class="inline-block px-10 py-4 bg-white text-terracotta font-bold rounded-lg text-base hover:bg-sand-50 transition-colors shadow-lg"
       >
         {t.home.cta_button}
       </a>
       <a
-        href={`${import.meta.env.BASE_URL}/${lang}/custom-itinerary`.replace(/\/+/g, '/')}
+        href={getLocalizedPath('/custom-itinerary', lang)}
         class="inline-block px-10 py-4 border-2 border-white text-white font-bold rounded-lg text-base hover:bg-white hover:text-terracotta transition-colors shadow-lg"
       >
         {t.nav.custom_itinerary}

@@ -1,5 +1,5 @@
 ---
-import { useTranslations, type Lang } from '../utils/i18n';
+import { useTranslations, getLocalizedPath, type Lang } from '../utils/i18n';
 import { SITE } from '../config';
 
 interface Props {
@@ -40,10 +40,10 @@ const t = useTranslations(lang);
 
     <!-- CTAs -->
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-      <a href={`${import.meta.env.BASE_URL}/${lang}/tours`.replace(/\/+/g, '/')} class="btn-primary text-base px-8 py-4">
+      <a href={getLocalizedPath('/tours', lang)} class="btn-primary text-base px-8 py-4">
         {t.hero.cta_reserve}
       </a>
-      <a href={`${import.meta.env.BASE_URL}/${lang}/custom-itinerary`.replace(/\/+/g, '/')} class="btn-outline text-base px-8 py-4">
+      <a href={getLocalizedPath('/custom-itinerary', lang)} class="btn-outline text-base px-8 py-4">
         {t.nav.custom_itinerary}
       </a>
     </div>
