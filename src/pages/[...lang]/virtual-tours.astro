@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VirtualTours from '../../components/VirtualTours.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import { useTranslations, getLocalizedPath, type Lang } from '../../utils/i18n';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'fr' } },
+    { params: { lang: 'ar' } },
+  ];
+}
+
+const { lang = 'en' } = Astro.params as { lang?: Lang };
+const t = useTranslations(lang);
+
+// Custom FAQs for Virtual Tours
+const vtFaqs = lang === 'ar' ? [
+  {
+    q: "ما الذي أحتاجه للانضمام إلى جولة افتراضية؟",
+    a: "كل ما تحتاجه هو هاتف ذكي أو كمبيوتر متصل بإنترنت جيد، وتطبيق واتساب أو زوم مثبتًا. سنرسل لك رابطًا للانضمام بضغطة زر واحدة."
+  },
+  {
+    q: "هل يمكن لعائلتي أو أصدقائي الانضمام من أجهزة مختلفة؟",
+    a: "نعم! يمكنك مشاركة رابط الجولة (Zoom) مع ما يصل إلى 4 أجهزة أخرى حتى تتمكنوا من الاستمتاع بالرحلة معًا."
+  },
+  {
+    q: "كيف يتم الدفع؟",
+    a: "نحن نقبل الدفع الآمن عبر الإنترنت (بطاقة الائتمان أو تحويل بنكي) قبل بدء الجولة. تواصل معنا لمزيد من التفاصيل."
+  }
+] : lang === 'fr' ? [
+  {
+    q: "De quoi ai-je besoin pour rejoindre la visite virtuelle ?",
+    a: "Il vous suffit d'un smartphone ou d'un ordinateur équipé d'une bonne connexion Internet et de l'application WhatsApp ou Zoom. Nous vous enverrons un lien d'accès direct."
+  },
+  {
+    q: "Est-ce que mes proches peuvent se connecter depuis d'autres appareils ?",
+    a: "Tout à fait ! Vous pouvez partager le lien Zoom avec jusqu'à 4 autres personnes/appareils pour vivre cette expérience de découverte ensemble."
+  },
+  {
+    q: "Quels sont les modes de paiement disponibles ?",
+    a: "Nous acceptons les paiements sécurisés par carte bancaire ou virement avant le début de la visite. Contactez-nous sur WhatsApp pour planifier."
+  }
+] : [
+  {
+    q: "What do I need to join the virtual tour?",
+    a: "All you need is a smartphone, tablet, or computer with a stable internet connection and WhatsApp or Zoom installed. We'll send you a direct link to join with one click."
+  },
+  {
+    q: "Can my family or friends join from different devices?",
+    a: "Yes! You can share the Zoom link with up to 4 other devices/locations so you can explore Tlemcen together in real-time."
+  },
+  {
+    q: "How does payment work?",
+    a: "We accept secure online card payments or bank transfers prior to the tour. Contact us on WhatsApp for availability and rates."
+  }
+];
+---
+
+<BaseLayout title={t.nav.virtual_tours} lang={lang}>
+
+  <!-- Page Header -->
+  <section class="relative py-24 bg-olive-dark overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <img src={`${import.meta.env.BASE_URL}/images/shots/shot-17.jpg`.replace(/\/+/g, '/')} alt="Virtual Tours Tlemcen" class="w-full h-full object-cover" />
+    </div>
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">{t.nav.virtual_tours}</h1>
+      <p class="text-stone-300 text-lg">{t.virtual_tours.subtitle}</p>
+    </div>
+  </section>
+
+  <!-- Virtual Tours Core Component -->
+  <VirtualTours lang={lang} />
+
+  <!-- FAQ Section specifically for Virtual Tours -->
+  <section class="py-20 bg-sand-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <h2 class="font-heading text-3xl font-bold text-stone-900 text-center mb-10">
+        {lang === 'ar' ? 'الأسئلة الشائعة حول الجولات الافتراضية' : lang === 'fr' ? 'Questions Fréquentes - Visites Virtuelles' : 'Virtual Tours FAQ'}
+      </h2>
+      <div class="space-y-4">
+        {vtFaqs.map((faq, index) => (
+          <div class="card p-6">
+            <h3 class="font-semibold text-stone-800 mb-2 flex items-start gap-2">
+              <span class="text-terracotta font-bold">Q:</span>
+              <span>{faq.q}</span>
+            </h3>
+            <p class="text-stone-600 pl-6 text-sm leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner lang={lang} />
+
+</BaseLayout>
