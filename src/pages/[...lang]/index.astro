@@ -8,6 +8,7 @@ import PressMention from '../../components/PressMention.astro';
 import InstagramFeed from '../../components/InstagramFeed.astro';
 import OtaListingBanner from '../../components/OtaListingBanner.astro';
 import CtaBanner from '../../components/CtaBanner.astro';
+import VirtualTours from '../../components/VirtualTours.astro';
 import { getCollection } from 'astro:content';
 import { useTranslations, LANGS, getLocalizedPath, type Lang } from '../../utils/i18n';
 import testimonialData from '../../data/testimonials.json';
@@ -92,6 +93,9 @@ const featuredTestimonials = testimonialData.filter(t => t.featured);
 
   <!-- OTA Listing Banner -->
   <OtaListingBanner lang={lang} />
+
+  <!-- Virtual Tours -->
+  <VirtualTours lang={lang} />
 
   <!-- CTA Banner -->
   <CtaBanner lang={lang} />
