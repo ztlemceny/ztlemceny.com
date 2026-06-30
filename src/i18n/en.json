@@ -8,8 +8,7 @@
     "testimonials": "Reviews",
     "contact": "Contact",
     "custom_itinerary": "Custom Tour",
-    "reserve": "Book Now",
-    "virtual_tours": "Virtual Tours"
+    "reserve": "Book Now"
   },
   "hero": {
     "tagline": "Step into Tlemcen's history, and stay for its charm .",
@@ -221,31 +220,5 @@
     "cta": "See Listing →",
     "coming_soon": "Profile under process",
     "coming_soon_note": "Our listing is currently being set up. Check back soon!"
-  },
-  "virtual_tours": {
-    "badge": "New · Virtual Experience",
-    "title": "Explore Tlemcen From Anywhere",
-    "subtitle": "Can't travel right now? Book a live virtual tour with Hamza and discover Tlemcen's iconic sites through a guided video call — from anywhere in the world.",
-    "tour_1_title": "Medina & Souks",
-    "tour_1_desc": "Wander through centuries-old alleys, artisan workshops, and the beating heart of Tlemcen's old city.",
-    "tour_1_duration": "60 min",
-    "tour_2_title": "Mansourah Ruins",
-    "tour_2_desc": "Explore the majestic ruins of the 14th-century Mansourah minaret and the ancient citadel walls.",
-    "tour_2_duration": "45 min",
-    "tour_3_title": "Sidi Boumediene Complex",
-    "tour_3_desc": "A spiritual journey through one of North Africa's most beautiful Sufi mausoleums and mosques.",
-    "tour_3_duration": "50 min",
-    "tour_4_title": "Mechouar Palace",
-    "tour_4_desc": "Step inside the royal palace of the Zianid dynasty and hear its captivating stories come to life.",
-    "tour_4_duration": "55 min",
-    "cta_eyebrow": "Live Video Experience",
-    "cta_title": "Book Your Virtual Tour Today",
-    "cta_text": "All virtual tours are conducted live via WhatsApp or Zoom video call. Hamza guides you in real time — ask questions, explore at your own pace.",
-    "feature_1": "Live with Hamza",
-    "feature_2": "Any device · Any timezone",
-    "feature_3": "EN · FR · AR",
-    "cta_whatsapp": "Book via WhatsApp",
-    "cta_contact": "Send a Message",
-    "whatsapp_message": "Hello Hamza! I'm interested in booking a Virtual Tour. Can you tell me more about availability and pricing?"
   }
 }

@@ -8,8 +8,7 @@
     "testimonials": "Avis",
     "contact": "Contact",
     "custom_itinerary": "Sur mesure",
-    "reserve": "Réserver maintenant",
-    "virtual_tours": "Visites virtuelles"
+    "reserve": "Réserver maintenant"
   },
   "hero": {
     "tagline": "Plongez dans l'histoire de Tlemcen, et restez pour son charme.",
@@ -222,31 +221,5 @@
     "cta": "Voir l'annonce →",
     "coming_soon": "Profil en cours de création",
     "coming_soon_note": "Notre annonce est en cours de configuration. Revenez bientôt !"
-  },
-  "virtual_tours": {
-    "badge": "Nouveau · Expérience virtuelle",
-    "title": "Explorez Tlemcen Depuis Chez Vous",
-    "subtitle": "Vous ne pouvez pas voyager en ce moment ? Réservez une visite virtuelle en direct avec Hamza et découvrez les sites emblématiques de Tlemcen par appel vidéo guidé — depuis n'importe où dans le monde.",
-    "tour_1_title": "Médina & Souks",
-    "tour_1_desc": "Déambulez dans des ruelles vieilles de plusieurs siècles, des ateliers d'artisans et le cœur battant de la vieille ville de Tlemcen.",
-    "tour_1_duration": "60 min",
-    "tour_2_title": "Ruines de Mansourah",
-    "tour_2_desc": "Explorez les ruines majestueuses du minaret de Mansourah du XIVe siècle et les antiques murs de la citadelle.",
-    "tour_2_duration": "45 min",
-    "tour_3_title": "Complexe Sidi Boumediene",
-    "tour_3_desc": "Un voyage spirituel à travers l'un des plus beaux mausolées soufis et mosquées d'Afrique du Nord.",
-    "tour_3_duration": "50 min",
-    "tour_4_title": "Palais du Méchouar",
-    "tour_4_desc": "Entrez dans le palais royal de la dynastie zianide et laissez ses histoires captivantes vous envoûter.",
-    "tour_4_duration": "55 min",
-    "cta_eyebrow": "Expérience Vidéo en Direct",
-    "cta_title": "Réservez Votre Visite Virtuelle",
-    "cta_text": "Toutes les visites virtuelles sont conduites en direct via WhatsApp ou appel Zoom. Hamza vous guide en temps réel — posez vos questions, explorez à votre rythme.",
-    "feature_1": "En direct avec Hamza",
-    "feature_2": "N'importe quel appareil · N'importe quel fuseau",
-    "feature_3": "FR · EN · AR",
-    "cta_whatsapp": "Réserver via WhatsApp",
-    "cta_contact": "Envoyer un message",
-    "whatsapp_message": "Bonjour Hamza ! Je suis intéressé(e) par une visite virtuelle. Pouvez-vous m'en dire plus sur les disponibilités et les tarifs ?"
   }
 }
